@@ -3,8 +3,6 @@ import express from 'express';
 import app from './src/routes/app.js';
 import connectDB from './src/config/db.config.js';
 
-// Load environment variables from .env file
-
 
 // Connect to MongoDB
 connectDB();
