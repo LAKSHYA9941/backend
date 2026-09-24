@@ -12,9 +12,12 @@
   },
   "dependencies": {
     "@imagekit/nodejs": "^7.12.1",
-    "dotenv": "^18.0.1",
+    "bcryptjs": "^3.0.3",
+    "cookie-parser": "^1.4.7",
+    "dotenv": "^18.0.3",
     "express": "^5.2.1",
     "imagekit": "^6.0.0",
+    "jsonwebtoken": "^9.0.3",
     "mongoose": "^9.10.1",
     "multer": "^2.4.0"
   }
