@@ -116,19 +116,25 @@ function ProductForm() {
   }
 
   return (
-    <div className="container mt-4 mb-4">
-      <div className="product-form-container card">
-        <h2>{isEditMode ? "Edit Product" : "Add New Product"}</h2>
-        <p style={{ color: "var(--text-secondary)", marginBottom: "var(--space-6)" }}>
+    <div className="main-content">
+      <div className="page-header">
+        <h1 className="mono">{isEditMode ? "UPDATE_ENTRY" : "NEW_ENTRY"}</h1>
+        <Link to="/" className="btn btn-ghost mono">
+          [ CANCEL ]
+        </Link>
+      </div>
+
+      <div className="card" style={{ maxWidth: "600px", margin: "0 auto", boxShadow: "16px 16px 0 var(--border-color)" }}>
+        <p className="mono" style={{ color: "var(--text-secondary)", marginBottom: "var(--space-6)" }}>
           {isEditMode
-            ? "Update the details of your product below."
-            : "Fill out the form below to list a new product."}
+            ? "SYS.UPDATE // MODIFY EXISTING RECORD"
+            : "SYS.CREATE // INITIALIZE NEW RECORD"}
         </p>
 
         <form onSubmit={handleSubmit}>
           {/* Name */}
           <div className="form-group">
-            <label htmlFor="name">Product Name *</label>
+            <label htmlFor="name">ITEM_NAME</label>
             <input
               id="name"
               name="name"
@@ -137,26 +143,27 @@ function ProductForm() {
               value={formData.name}
               onChange={handleChange}
             />
-            {errors.name && <p className="field-error">{errors.name}</p>}
+            {errors.name && <p className="field-error">ERR: {errors.name}</p>}
           </div>
 
           {/* Description */}
           <div className="form-group">
-            <label htmlFor="description">Description *</label>
+            <label htmlFor="description">DETAILS_AND_SPECS</label>
             <textarea
               id="description"
               name="description"
               className={`form-input form-textarea ${errors.description ? "input-error" : ""}`}
               value={formData.description}
               onChange={handleChange}
+              style={{ resize: "vertical", fontFamily: "var(--font-mono)" }}
             />
-            {errors.description && <p className="field-error">{errors.description}</p>}
+            {errors.description && <p className="field-error">ERR: {errors.description}</p>}
           </div>
 
-          <div className="form-row">
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }}>
             {/* Price */}
             <div className="form-group">
-              <label htmlFor="price">Price ($) *</label>
+              <label htmlFor="price">UNIT_COST (USD)</label>
               <input
                 id="price"
                 name="price"
@@ -166,13 +173,14 @@ function ProductForm() {
                 className={`form-input ${errors.price ? "input-error" : ""}`}
                 value={formData.price}
                 onChange={handleChange}
+                style={{ fontFamily: "var(--font-mono)" }}
               />
-              {errors.price && <p className="field-error">{errors.price}</p>}
+              {errors.price && <p className="field-error">ERR: {errors.price}</p>}
             </div>
 
             {/* Stock */}
             <div className="form-group">
-              <label htmlFor="stock">Stock Quantity *</label>
+              <label htmlFor="stock">INVENTORY_COUNT</label>
               <input
                 id="stock"
                 name="stock"
@@ -181,14 +189,15 @@ function ProductForm() {
                 className={`form-input ${errors.stock ? "input-error" : ""}`}
                 value={formData.stock}
                 onChange={handleChange}
+                style={{ fontFamily: "var(--font-mono)" }}
               />
-              {errors.stock && <p className="field-error">{errors.stock}</p>}
+              {errors.stock && <p className="field-error">ERR: {errors.stock}</p>}
             </div>
           </div>
 
           {/* Category */}
           <div className="form-group">
-            <label htmlFor="category">Category *</label>
+            <label htmlFor="category">CLASSIFICATION</label>
             <input
               id="category"
               name="category"
@@ -197,12 +206,12 @@ function ProductForm() {
               value={formData.category}
               onChange={handleChange}
             />
-            {errors.category && <p className="field-error">{errors.category}</p>}
+            {errors.category && <p className="field-error">ERR: {errors.category}</p>}
           </div>
 
           {/* Image URL */}
           <div className="form-group">
-            <label htmlFor="image">Image URL (Optional)</label>
+            <label htmlFor="image">IMAGE_URI (OPTIONAL)</label>
             <input
               id="image"
               name="image"
@@ -210,22 +219,18 @@ function ProductForm() {
               className="form-input"
               value={formData.image}
               onChange={handleChange}
-              placeholder="https://example.com/image.jpg"
+              placeholder="https://..."
             />
           </div>
 
-          <div style={{ display: "flex", gap: "var(--space-3)", marginTop: "var(--space-6)" }}>
-            <button
-              type="submit"
-              className="btn btn-primary"
-              disabled={isSubmitting}
-            >
-              {isSubmitting ? "Saving..." : isEditMode ? "Update Product" : "Create Product"}
-            </button>
-            <Link to="/" className="btn btn-secondary">
-              Cancel
-            </Link>
-          </div>
+          <button
+            type="submit"
+            className="btn btn-primary btn-block"
+            disabled={isSubmitting}
+            style={{ marginTop: "16px" }}
+          >
+            {isSubmitting ? "[ PROCESSING... ]" : isEditMode ? "[ UPDATE RECORD ]" : "[ SAVE RECORD ]"}
+          </button>
         </form>
       </div>
     </div>

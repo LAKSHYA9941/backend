@@ -65,18 +65,20 @@ function Products() {
   }
 
   return (
-    <div className="container mt-4 mb-4">
+    <div className="main-content">
       <div className="page-header">
-        <h1>All Products</h1>
+        <h1 className="mono">GLOBAL_DIRECTORY</h1>
       </div>
 
       {products.length === 0 ? (
         <div className="empty-state">
-          <h3>No products found</h3>
-          <p>Be the first to add a product to our store!</p>
+          <h3>[ NO_DATA_FOUND ]</h3>
+          <p className="mono" style={{ color: "var(--text-secondary)", marginBottom: "var(--space-4)" }}>
+            SYS: DATABASE CURRENTLY EMPTY
+          </p>
           {user && (
             <Link to="/products/new" className="btn btn-primary">
-              Add Product
+              [ INITIALIZE FIRST ENTRY ]
             </Link>
           )}
         </div>
@@ -96,7 +98,13 @@ function Products() {
               )}
               
               <div className="product-card-body">
-                <span className="product-card-category">{product.category}</span>
+                <div className="product-card-header">
+                  <span className="product-card-category">{product.category}</span>
+                  <div style={{ fontSize: "10px", color: "var(--text-muted)", fontFamily: "var(--font-mono)" }}>
+                    ID: {product._id.slice(-6).toUpperCase()}
+                  </div>
+                </div>
+                
                 <h3 className="product-card-name">{product.name}</h3>
                 <p className="product-card-description">{product.description}</p>
                 
@@ -107,12 +115,12 @@ function Products() {
                       product.stock > 0 ? "in-stock" : "out-of-stock"
                     }`}
                   >
-                    {product.stock > 0 ? `${product.stock} in stock` : "Out of stock"}
+                    {product.stock > 0 ? `[QTY:${product.stock}]` : "[ERR:OOS]"}
                   </span>
                 </div>
 
-                <div style={{ marginTop: "10px", fontSize: "12px", color: "var(--text-muted)" }}>
-                  Listed by: {product.owner?.name}
+                <div className="mono" style={{ marginTop: "12px", color: "var(--text-secondary)" }}>
+                  SYS.OWNER // {product.owner?.name}
                 </div>
 
                 {/* 
@@ -123,15 +131,15 @@ function Products() {
                   <div className="product-card-actions">
                     <Link
                       to={`/products/edit/${product._id}`}
-                      className="btn btn-secondary btn-sm"
+                      className="btn btn-secondary btn-block"
                     >
-                      Edit
+                      [ EDIT ]
                     </Link>
                     <button
                       onClick={() => handleDelete(product._id)}
-                      className="btn btn-danger btn-sm"
+                      className="btn btn-danger btn-block"
                     >
-                      Delete
+                      [ DEL ]
                     </button>
                   </div>
                 )}

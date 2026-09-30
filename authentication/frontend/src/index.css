@@ -1,188 +1,140 @@
 /* --------------------------------------------------
-   Global Styles & CSS Variables
+   AESTHETIC: Neo-Utilitarian (Polished Industrial)
    --------------------------------------------------
-   This file defines the entire design system:
-   colors, typography, spacing, and component styles.
-   Using CSS custom properties (variables) so everything
-   stays consistent and easy to theme.
+   Avoiding generic "SaaS purple" and soft shadows.
+   This design is structural, raw, and typography-led.
+   Borders are visible, grid lines are exposed, and 
+   interactions rely on harsh transitions and high contrast.
    -------------------------------------------------- */
 
-/* ---- CSS Reset & Base ---- */
-*,
-*::before,
-*::after {
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Manrope:wght@400;600;800&display=swap');
+
+/* ---- Reset & Base ---- */
+*, *::before, *::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* ---- Design Tokens (CSS Variables) ---- */
 :root {
-  /* -- Color Palette -- */
-  /* Primary: deep indigo / purple tones */
-  --color-primary: #6366f1;
-  --color-primary-hover: #4f46e5;
-  --color-primary-light: #818cf8;
-  --color-primary-bg: rgba(99, 102, 241, 0.08);
+  /* -- Colors -- */
+  --bg-primary: #0a0a0a;
+  --bg-secondary: #111111;
+  --bg-card: #0a0a0a;
+  --bg-hover: #1a1a1a;
+  
+  --text-primary: #f5f5f5;
+  --text-secondary: #a3a3a3;
+  --text-muted: #525252;
+  --text-inverse: #0a0a0a;
 
-  /* Accent: warm amber for highlights */
-  --color-accent: #f59e0b;
-  --color-accent-hover: #d97706;
+  /* Industrial Accent */
+  --accent: #d9f99d; /* Raw Lime */
+  --accent-hover: #bef264;
+  --danger: #ef4444;
 
-  /* Danger: for errors and destructive actions */
-  --color-danger: #ef4444;
-  --color-danger-hover: #dc2626;
-  --color-danger-bg: rgba(239, 68, 68, 0.08);
+  /* Structural Elements */
+  --border-color: #262626;
+  --border-thick: 2px solid #3f3f46;
+  --border-thin: 1px solid var(--border-color);
 
-  /* Success: for confirmations */
-  --color-success: #10b981;
-  --color-success-bg: rgba(16, 185, 129, 0.08);
+  /* Typography */
+  --font-sans: 'Manrope', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
 
-  /* Dark theme base colors */
-  --bg-primary: #0f0f23;
-  --bg-secondary: #1a1a3e;
-  --bg-card: #1e1e45;
-  --bg-card-hover: #252560;
-  --bg-input: #16163a;
+  /* Spacing (Rigid 8px grid) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 16px;
+  --space-4: 24px;
+  --space-5: 32px;
+  --space-6: 48px;
+  --space-8: 64px;
 
-  /* Text colors */
-  --text-primary: #e8e8f0;
-  --text-secondary: #9ca3c0;
-  --text-muted: #6b7199;
-  --text-inverse: #0f0f23;
+  /* Harsh, structural corners */
+  --radius: 0px; 
 
-  /* Borders */
-  --border-color: #2a2a5a;
-  --border-focus: var(--color-primary);
-
-  /* -- Typography -- */
-  --font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    sans-serif;
-  --font-size-xs: 0.75rem;
-  --font-size-sm: 0.875rem;
-  --font-size-base: 1rem;
-  --font-size-lg: 1.125rem;
-  --font-size-xl: 1.25rem;
-  --font-size-2xl: 1.5rem;
-  --font-size-3xl: 2rem;
-  --font-size-4xl: 2.5rem;
-
-  /* -- Spacing -- */
-  --space-1: 0.25rem;
-  --space-2: 0.5rem;
-  --space-3: 0.75rem;
-  --space-4: 1rem;
-  --space-5: 1.25rem;
-  --space-6: 1.5rem;
-  --space-8: 2rem;
-  --space-10: 2.5rem;
-  --space-12: 3rem;
-  --space-16: 4rem;
-
-  /* -- Borders & Radius -- */
-  --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 16px;
-  --radius-xl: 24px;
-  --radius-full: 9999px;
-
-  /* -- Shadows -- */
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
-  --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.5);
-  --shadow-glow: 0 0 20px rgba(99, 102, 241, 0.2);
-
-  /* -- Transitions -- */
-  --transition-fast: 150ms ease;
-  --transition-normal: 250ms ease;
-  --transition-slow: 350ms ease;
+  /* Motion */
+  --transition-snap: 150ms cubic-bezier(0, 0.7, 0.1, 1);
 }
 
-/* ---- Body ---- */
 body {
-  font-family: var(--font-family);
-  font-size: var(--font-size-base);
-  color: var(--text-primary);
+  font-family: var(--font-sans);
   background-color: var(--bg-primary);
-  line-height: 1.6;
+  color: var(--text-primary);
+  line-height: 1.5;
   min-height: 100vh;
-  -webkit-font-smoothing: antialiased;
+  /* Blueprint/Grid background */
+  background-image: linear-gradient(var(--border-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border-color) 1px, transparent 1px);
+  background-size: 32px 32px;
+  background-position: center top;
 }
 
+/* --------------------------------------------------
+   Typography System
+   -------------------------------------------------- */
+h1, h2, h3 {
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+}
+
+.mono {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* --------------------------------------------------
+   Layout Structure
+   -------------------------------------------------- */
 #root {
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
-}
-
-/* ---- Links ---- */
-a {
-  color: var(--color-primary-light);
-  text-decoration: none;
-  transition: color var(--transition-fast);
-}
-
-a:hover {
-  color: var(--color-primary);
-}
-
-/* --------------------------------------------------
-   Layout Components
-   -------------------------------------------------- */
-
-/* Container that centers content with max-width */
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 var(--space-6);
-}
-
-/* Full-page centered layout for auth forms */
-.auth-layout {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   min-height: 100vh;
-  padding: var(--space-6);
-  background: var(--bg-primary);
-  /* Subtle gradient overlay for visual depth */
-  background-image: radial-gradient(
-    ellipse at 20% 50%,
-    rgba(99, 102, 241, 0.08) 0%,
-    transparent 50%
-  ),
-  radial-gradient(
-    ellipse at 80% 20%,
-    rgba(245, 158, 11, 0.05) 0%,
-    transparent 50%
-  );
+}
+
+.main-content {
+  flex: 1;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+  padding: var(--space-6) var(--space-4);
 }
 
 /* --------------------------------------------------
-   Navbar
+   Navbar (Structural Tape)
    -------------------------------------------------- */
 .navbar {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  padding: var(--space-4) var(--space-6);
-  background: var(--bg-secondary);
-  border-bottom: 1px solid var(--border-color);
+  align-items: center;
+  padding: var(--space-3) var(--space-4);
+  background: var(--bg-primary);
+  border-bottom: var(--border-thin);
   position: sticky;
   top: 0;
-  z-index: 100;
-  backdrop-filter: blur(12px);
+  z-index: 50;
 }
 
 .navbar-brand {
-  font-size: var(--font-size-xl);
-  font-weight: 700;
+  font-size: 1.5rem;
+  font-weight: 800;
   color: var(--text-primary);
-  letter-spacing: -0.5px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
 }
 
-.navbar-brand span {
-  color: var(--color-primary-light);
+.navbar-brand::before {
+  content: "";
+  display: block;
+  width: 16px;
+  height: 16px;
+  background: var(--accent);
 }
 
 .navbar-links {
@@ -191,511 +143,296 @@ a:hover {
   gap: var(--space-4);
 }
 
-.navbar-user {
-  display: flex;
-  align-items: center;
-  gap: var(--space-3);
-  color: var(--text-secondary);
-  font-size: var(--font-size-sm);
-}
-
-.navbar-user-avatar {
-  width: 32px;
-  height: 32px;
-  border-radius: var(--radius-full);
-  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
-  display: flex;
+/* --------------------------------------------------
+   Buttons (Brutalist blocks)
+   -------------------------------------------------- */
+.btn {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: var(--space-2) var(--space-4);
+  cursor: pointer;
+  border: var(--border-thin);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  transition: all var(--transition-snap);
+  position: relative;
+  text-decoration: none;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: white;
-  font-weight: 600;
-  font-size: var(--font-size-sm);
 }
 
-/* --------------------------------------------------
-   Cards
-   -------------------------------------------------- */
-.card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-lg);
-  padding: var(--space-8);
-  transition: transform var(--transition-normal),
-    box-shadow var(--transition-normal);
+/* Design Spell: Box shadow offset on hover (Solid) */
+.btn:hover:not(:disabled) {
+  transform: translate(-4px, -4px);
+  box-shadow: 4px 4px 0 var(--border-color);
 }
 
-.card:hover {
-  box-shadow: var(--shadow-glow);
+.btn:active:not(:disabled) {
+  transform: translate(0, 0);
+  box-shadow: 0 0 0 var(--border-color);
 }
 
-.auth-card {
-  width: 100%;
-  max-width: 440px;
-  padding: var(--space-10);
+.btn-primary {
+  background: var(--accent);
+  color: var(--text-inverse);
+  border-color: var(--accent);
 }
 
-.auth-card h1 {
-  font-size: var(--font-size-3xl);
-  font-weight: 700;
-  margin-bottom: var(--space-2);
-  letter-spacing: -1px;
-  background: linear-gradient(135deg, var(--text-primary), var(--color-primary-light));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+.btn-primary:hover:not(:disabled) {
+  box-shadow: 4px 4px 0 var(--text-primary);
 }
 
-.auth-card p {
-  color: var(--text-secondary);
-  margin-bottom: var(--space-8);
-  font-size: var(--font-size-sm);
+.btn-danger {
+  background: transparent;
+  color: var(--danger);
+  border-color: var(--danger);
+}
+
+.btn-danger:hover:not(:disabled) {
+  background: var(--danger);
+  color: #fff;
+  box-shadow: 4px 4px 0 rgba(239, 68, 68, 0.3);
 }
 
 /* --------------------------------------------------
    Forms & Inputs
    -------------------------------------------------- */
+.auth-layout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 70px);
+}
+
+.card {
+  background: var(--bg-primary);
+  border: var(--border-thin);
+  padding: var(--space-6);
+  width: 100%;
+}
+
+.auth-card {
+  max-width: 480px;
+  box-shadow: 16px 16px 0 var(--border-color);
+}
+
 .form-group {
-  margin-bottom: var(--space-5);
+  margin-bottom: var(--space-4);
 }
 
 .form-group label {
   display: block;
-  font-size: var(--font-size-sm);
-  font-weight: 500;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
   color: var(--text-secondary);
-  margin-bottom: var(--space-2);
+  margin-bottom: var(--space-1);
 }
 
 .form-input {
   width: 100%;
-  padding: var(--space-3) var(--space-4);
-  background: var(--bg-input);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-md);
+  background: transparent;
+  border: var(--border-thin);
+  padding: var(--space-3);
   color: var(--text-primary);
-  font-size: var(--font-size-base);
-  font-family: var(--font-family);
-  transition: border-color var(--transition-fast),
-    box-shadow var(--transition-fast);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  transition: border-color 0.2s;
   outline: none;
 }
 
 .form-input:focus {
-  border-color: var(--border-focus);
-  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+  border-color: var(--accent);
+  border-left: 4px solid var(--accent);
 }
 
-.form-input::placeholder {
-  color: var(--text-muted);
-}
-
-/* Textarea variant */
-.form-textarea {
-  resize: vertical;
-  min-height: 80px;
-}
-
-/* Field-level error message */
 .field-error {
-  color: var(--color-danger);
-  font-size: var(--font-size-xs);
-  margin-top: var(--space-1);
+  color: var(--danger);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  margin-top: 4px;
 }
 
 .form-input.input-error {
-  border-color: var(--color-danger);
+  border-color: var(--danger);
 }
 
-/* --------------------------------------------------
-   Buttons
-   -------------------------------------------------- */
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-2);
-  padding: var(--space-3) var(--space-6);
-  font-size: var(--font-size-sm);
-  font-weight: 600;
-  font-family: var(--font-family);
-  border: none;
-  border-radius: var(--radius-md);
-  cursor: pointer;
-  transition: all var(--transition-fast);
-  text-decoration: none;
-  white-space: nowrap;
-}
-
-.btn:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
-/* Primary button -- filled */
-.btn-primary {
-  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-hover));
-  color: white;
-}
-
-.btn-primary:hover:not(:disabled) {
-  background: linear-gradient(135deg, var(--color-primary-hover), #4338ca);
-  box-shadow: var(--shadow-glow);
-  transform: translateY(-1px);
-}
-
-/* Secondary button -- outline */
-.btn-secondary {
-  background: transparent;
-  color: var(--text-primary);
-  border: 1px solid var(--border-color);
-}
-
-.btn-secondary:hover:not(:disabled) {
-  background: var(--bg-card);
-  border-color: var(--text-muted);
-}
-
-/* Danger button -- for delete actions */
-.btn-danger {
-  background: var(--color-danger);
-  color: white;
-}
-
-.btn-danger:hover:not(:disabled) {
-  background: var(--color-danger-hover);
-  transform: translateY(-1px);
-}
-
-/* Ghost button -- text only */
-.btn-ghost {
-  background: transparent;
-  color: var(--text-secondary);
-  padding: var(--space-2) var(--space-3);
-}
-
-.btn-ghost:hover {
-  color: var(--text-primary);
-  background: rgba(255, 255, 255, 0.05);
-}
-
-/* Full-width button (for forms) */
 .btn-block {
   width: 100%;
+  padding: var(--space-3);
 }
 
-/* Small button */
-.btn-sm {
-  padding: var(--space-2) var(--space-4);
-  font-size: var(--font-size-xs);
+.auth-footer {
+  margin-top: var(--space-5);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-align: center;
+  color: var(--text-secondary);
+}
+
+.auth-footer a {
+  color: var(--text-primary);
+  text-decoration: underline;
 }
 
 /* --------------------------------------------------
-   Product Grid & Cards
+   Product Grid (Exposed Structure)
    -------------------------------------------------- */
 .page-header {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  margin-bottom: var(--space-8);
-  flex-wrap: wrap;
-  gap: var(--space-4);
+  align-items: flex-end;
+  margin-bottom: var(--space-6);
+  padding-bottom: var(--space-3);
+  border-bottom: 2px solid var(--text-primary);
 }
 
 .page-header h1 {
-  font-size: var(--font-size-3xl);
-  font-weight: 700;
-  letter-spacing: -1px;
+  font-size: 2.5rem;
+  line-height: 1;
 }
 
 .products-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: var(--space-6);
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: var(--space-4);
 }
 
+/* Design Spell: Magnetic reveal card */
 .product-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  transition: transform var(--transition-normal),
-    box-shadow var(--transition-normal),
-    border-color var(--transition-normal);
+  position: relative;
+  background: var(--bg-primary);
+  border: var(--border-thin);
+  display: flex;
+  flex-direction: column;
+  transition: border-color var(--transition-snap);
+}
+
+.product-card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  border: 1px solid var(--accent);
+  opacity: 0;
+  transition: opacity 0.3s, transform 0.3s;
+  pointer-events: none;
+  z-index: 10;
 }
 
 .product-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-lg);
-  border-color: var(--color-primary);
+  border-color: var(--text-primary);
+}
+
+.product-card:hover::before {
+  opacity: 1;
+  transform: translate(6px, 6px);
 }
 
 .product-card-image {
   width: 100%;
-  height: 200px;
+  height: 240px;
   object-fit: cover;
   background: var(--bg-secondary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--text-muted);
-  font-size: var(--font-size-sm);
+  border-bottom: var(--border-thin);
+  filter: grayscale(100%);
+  transition: filter 0.4s;
+}
+
+.product-card:hover .product-card-image {
+  filter: grayscale(0%);
 }
 
 .product-card-body {
-  padding: var(--space-5);
+  padding: var(--space-4);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: var(--space-2);
 }
 
 .product-card-category {
-  display: inline-block;
-  padding: var(--space-1) var(--space-3);
-  background: var(--color-primary-bg);
-  color: var(--color-primary-light);
-  font-size: var(--font-size-xs);
-  font-weight: 600;
-  border-radius: var(--radius-full);
-  margin-bottom: var(--space-3);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+  padding: 2px 6px;
 }
 
 .product-card-name {
-  font-size: var(--font-size-lg);
-  font-weight: 600;
+  font-size: 1.25rem;
+  font-weight: 800;
   margin-bottom: var(--space-2);
-  color: var(--text-primary);
 }
 
 .product-card-description {
   color: var(--text-secondary);
-  font-size: var(--font-size-sm);
+  font-size: 0.9rem;
+  flex: 1;
   margin-bottom: var(--space-4);
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
 }
 
 .product-card-footer {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  padding-top: var(--space-4);
-  border-top: 1px solid var(--border-color);
+  align-items: center;
+  padding-top: var(--space-3);
+  border-top: 1px dashed var(--border-color);
+  font-family: var(--font-mono);
 }
 
 .product-card-price {
-  font-size: var(--font-size-xl);
-  font-weight: 700;
-  color: var(--color-accent);
+  font-size: 1.2rem;
+  color: var(--text-primary);
 }
 
-.product-card-stock {
-  font-size: var(--font-size-xs);
-  color: var(--text-muted);
-}
-
-.product-card-stock.in-stock {
-  color: var(--color-success);
-}
-
-.product-card-stock.out-of-stock {
-  color: var(--color-danger);
-}
+.in-stock { color: var(--accent); }
+.out-of-stock { color: var(--danger); }
 
 .product-card-actions {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: var(--space-2);
   margin-top: var(--space-4);
 }
 
 /* --------------------------------------------------
-   Product Form (Create/Edit)
-   -------------------------------------------------- */
-.product-form-container {
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-.form-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-4);
-}
-
-/* --------------------------------------------------
-   Empty State
+   Misc / Utils
    -------------------------------------------------- */
 .empty-state {
   text-align: center;
-  padding: var(--space-16) var(--space-4);
-  color: var(--text-muted);
+  padding: var(--space-8);
+  border: 1px dashed var(--border-color);
 }
 
 .empty-state h3 {
-  font-size: var(--font-size-xl);
-  margin-bottom: var(--space-3);
-  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  margin-bottom: var(--space-2);
 }
 
-.empty-state p {
-  margin-bottom: var(--space-6);
-}
-
-/* --------------------------------------------------
-   Loading Spinner
-   -------------------------------------------------- */
+/* Design Spell: Terminal cursor loading spinner */
 .spinner {
   display: flex;
-  align-items: center;
   justify-content: center;
-  padding: var(--space-16);
-}
-
-.spinner::after {
-  content: "";
-  width: 36px;
-  height: 36px;
-  border: 3px solid var(--border-color);
-  border-top-color: var(--color-primary);
-  border-radius: 50%;
-  animation: spin 0.8s linear infinite;
-}
-
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-/* --------------------------------------------------
-   Alert / Message Boxes
-   -------------------------------------------------- */
-.alert {
-  padding: var(--space-3) var(--space-4);
-  border-radius: var(--radius-md);
-  font-size: var(--font-size-sm);
-  margin-bottom: var(--space-4);
-}
-
-.alert-error {
-  background: var(--color-danger-bg);
-  color: var(--color-danger);
-  border: 1px solid rgba(239, 68, 68, 0.2);
-}
-
-.alert-success {
-  background: var(--color-success-bg);
-  color: var(--color-success);
-  border: 1px solid rgba(16, 185, 129, 0.2);
-}
-
-/* --------------------------------------------------
-   Auth Footer Links
-   -------------------------------------------------- */
-.auth-footer {
-  text-align: center;
-  margin-top: var(--space-6);
-  font-size: var(--font-size-sm);
-  color: var(--text-muted);
-}
-
-.auth-footer a {
-  color: var(--color-primary-light);
-  font-weight: 500;
-}
-
-/* --------------------------------------------------
-   Modal / Confirm Dialog Overlay
-   -------------------------------------------------- */
-.modal-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.6);
-  display: flex;
   align-items: center;
-  justify-content: center;
-  z-index: 1000;
-  backdrop-filter: blur(4px);
-}
-
-.modal-content {
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-lg);
   padding: var(--space-8);
-  max-width: 420px;
-  width: 90%;
-  text-align: center;
+  font-family: var(--font-mono);
+  color: var(--accent);
+  font-size: 1.5rem;
+}
+.spinner::after {
+  content: "INITIALIZING_";
+  animation: blink 1s step-end infinite;
 }
 
-.modal-content h3 {
-  margin-bottom: var(--space-3);
-  font-size: var(--font-size-xl);
-}
-
-.modal-content p {
-  color: var(--text-secondary);
-  margin-bottom: var(--space-6);
-  font-size: var(--font-size-sm);
-}
-
-.modal-actions {
-  display: flex;
-  gap: var(--space-3);
-  justify-content: center;
-}
-
-/* --------------------------------------------------
-   Responsive Adjustments
-   -------------------------------------------------- */
-@media (max-width: 768px) {
-  .navbar {
-    padding: var(--space-3) var(--space-4);
-    flex-wrap: wrap;
-    gap: var(--space-3);
-  }
-
-  .navbar-links {
-    gap: var(--space-2);
-  }
-
-  .products-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .form-row {
-    grid-template-columns: 1fr;
-  }
-
-  .page-header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .auth-card {
-    padding: var(--space-6);
-  }
-}
-
-/* --------------------------------------------------
-   Utility Classes
-   -------------------------------------------------- */
-.text-center {
-  text-align: center;
-}
-
-.mt-4 {
-  margin-top: var(--space-4);
-}
-
-.mb-4 {
-  margin-bottom: var(--space-4);
-}
-
-.main-content {
-  flex: 1;
-  padding: var(--space-8) var(--space-6);
-  max-width: 1200px;
-  margin: 0 auto;
-  width: 100%;
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
 }

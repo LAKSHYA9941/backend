@@ -54,7 +54,7 @@ function App() {
         />
 
         {/* Main Content Area */}
-        <main className="main-content">
+        <main>
           <Routes>
             {/* Public Routes */}
             <Route path="/" element={<Products />} />

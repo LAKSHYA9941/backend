@@ -34,45 +34,42 @@ function Navbar() {
     <nav className="navbar">
       {/* Brand / Logo -- links to home (products page) */}
       <Link to="/" className="navbar-brand">
-        Shop<span>Hub</span>
+        SYS.<span>HUB</span>
       </Link>
 
       <div className="navbar-links">
         {/* Always show the Products link */}
-        <Link to="/" className="btn btn-ghost">
-          Products
+        <Link to="/" className="btn btn-ghost mono">
+          [ DIRECTORY ]
         </Link>
 
         {user ? (
           <>
             {/* ---- Logged In State ---- */}
             {/* Show "Add Product" button for authenticated users */}
-            <Link to="/products/new" className="btn btn-secondary btn-sm">
-              + Add Product
+            <Link to="/products/new" className="btn btn-primary">
+              [+ NEW ENTRY]
             </Link>
 
             {/* User avatar and name */}
             <div className="navbar-user">
-              <div className="navbar-user-avatar">
-                {/* Show the first letter of the user's name as the avatar */}
-                {user.name?.charAt(0).toUpperCase()}
-              </div>
-              <span>{user.name}</span>
+              <span className="mono" style={{ color: "var(--accent)" }}>USR:</span>
+              <span className="mono">{user.name.toUpperCase()}</span>
             </div>
 
             {/* Logout button */}
-            <button onClick={handleLogout} className="btn btn-ghost">
-              Logout
+            <button onClick={handleLogout} className="btn btn-ghost mono" style={{ borderLeft: "1px solid var(--border-color)", paddingLeft: "16px" }}>
+              [ LOGOUT ]
             </button>
           </>
         ) : (
           <>
             {/* ---- Logged Out State ---- */}
-            <Link to="/login" className="btn btn-ghost">
-              Login
+            <Link to="/login" className="btn btn-ghost mono">
+              [ AUTHENTICATE ]
             </Link>
-            <Link to="/register" className="btn btn-primary btn-sm">
-              Register
+            <Link to="/register" className="btn btn-primary">
+              [ INITIALIZE ]
             </Link>
           </>
         )}

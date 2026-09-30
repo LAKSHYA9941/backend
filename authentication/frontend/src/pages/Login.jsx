@@ -67,36 +67,38 @@ function Login() {
   return (
     <div className="auth-layout">
       <div className="card auth-card">
-        <h1>Welcome Back</h1>
-        <p>Sign in to manage your products</p>
+        <h1 className="mono" style={{ fontSize: "2rem", marginBottom: "8px" }}>AUTH.SEQ</h1>
+        <p className="mono" style={{ color: "var(--text-secondary)", marginBottom: "32px", fontSize: "0.85rem" }}>
+          SYS.LOGIN // PLEASE IDENTIFY
+        </p>
 
         <form onSubmit={handleSubmit}>
           {/* ---- Email Field ---- */}
           <div className="form-group">
-            <label htmlFor="email">Email Address</label>
+            <label htmlFor="email">EMAIL_ADDRESS</label>
             <input
               id="email"
               type="email"
               className={`form-input ${errors.email ? "input-error" : ""}`}
-              placeholder="you@example.com"
+              placeholder="user@system.local"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-            {errors.email && <p className="field-error">{errors.email}</p>}
+            {errors.email && <p className="field-error">ERR: {errors.email}</p>}
           </div>
 
           {/* ---- Password Field ---- */}
           <div className="form-group">
-            <label htmlFor="password">Password</label>
+            <label htmlFor="password">ACCESS_KEY</label>
             <input
               id="password"
               type="password"
               className={`form-input ${errors.password ? "input-error" : ""}`}
-              placeholder="Enter your password"
+              placeholder="••••••••"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-            {errors.password && <p className="field-error">{errors.password}</p>}
+            {errors.password && <p className="field-error">ERR: {errors.password}</p>}
           </div>
 
           {/* ---- Submit Button ---- */}
@@ -104,14 +106,15 @@ function Login() {
             type="submit"
             className="btn btn-primary btn-block"
             disabled={isSubmitting}
+            style={{ marginTop: "16px" }}
           >
-            {isSubmitting ? "Signing In..." : "Sign In"}
+            {isSubmitting ? "[ AUTHENTICATING... ]" : "[ EXECUTE LOGIN ]"}
           </button>
         </form>
 
         {/* ---- Footer Link ---- */}
         <div className="auth-footer">
-          Don't have an account? <Link to="/register">Create one</Link>
+          UNREGISTERED? <Link to="/register">INITIALIZE NEW RECORD</Link>
         </div>
       </div>
     </div>

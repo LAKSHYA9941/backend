@@ -82,13 +82,15 @@ function Register() {
   return (
     <div className="auth-layout">
       <div className="card auth-card">
-        <h1>Create Account</h1>
-        <p>Join ShopHub and start managing your products</p>
+        <h1 className="mono" style={{ fontSize: "2rem", marginBottom: "8px" }}>INIT.SEQ</h1>
+        <p className="mono" style={{ color: "var(--text-secondary)", marginBottom: "32px", fontSize: "0.85rem" }}>
+          SYS.REGISTER // CREATE NEW IDENTITY
+        </p>
 
         <form onSubmit={handleSubmit}>
           {/* ---- Name Field ---- */}
           <div className="form-group">
-            <label htmlFor="name">Full Name</label>
+            <label htmlFor="name">FULL_NAME</label>
             <input
               id="name"
               type="text"
@@ -98,50 +100,50 @@ function Register() {
               onChange={(e) => setName(e.target.value)}
             />
             {/* Show field-level error if it exists */}
-            {errors.name && <p className="field-error">{errors.name}</p>}
+            {errors.name && <p className="field-error">ERR: {errors.name}</p>}
           </div>
 
           {/* ---- Email Field ---- */}
           <div className="form-group">
-            <label htmlFor="email">Email Address</label>
+            <label htmlFor="email">EMAIL_ADDRESS</label>
             <input
               id="email"
               type="email"
               className={`form-input ${errors.email ? "input-error" : ""}`}
-              placeholder="you@example.com"
+              placeholder="user@system.local"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-            {errors.email && <p className="field-error">{errors.email}</p>}
+            {errors.email && <p className="field-error">ERR: {errors.email}</p>}
           </div>
 
           {/* ---- Password Field ---- */}
           <div className="form-group">
-            <label htmlFor="password">Password</label>
+            <label htmlFor="password">ACCESS_KEY</label>
             <input
               id="password"
               type="password"
               className={`form-input ${errors.password ? "input-error" : ""}`}
-              placeholder="Minimum 6 characters"
+              placeholder="Min 6 chars + number"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-            {errors.password && <p className="field-error">{errors.password}</p>}
+            {errors.password && <p className="field-error">ERR: {errors.password}</p>}
           </div>
 
           {/* ---- Confirm Password Field ---- */}
           <div className="form-group">
-            <label htmlFor="confirmPassword">Confirm Password</label>
+            <label htmlFor="confirmPassword">VERIFY_KEY</label>
             <input
               id="confirmPassword"
               type="password"
               className={`form-input ${errors.confirmPassword ? "input-error" : ""}`}
-              placeholder="Re-enter your password"
+              placeholder="Re-enter access key"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
             />
             {errors.confirmPassword && (
-              <p className="field-error">{errors.confirmPassword}</p>
+              <p className="field-error">ERR: {errors.confirmPassword}</p>
             )}
           </div>
 
@@ -150,14 +152,15 @@ function Register() {
             type="submit"
             className="btn btn-primary btn-block"
             disabled={isSubmitting}
+            style={{ marginTop: "16px" }}
           >
-            {isSubmitting ? "Creating Account..." : "Create Account"}
+            {isSubmitting ? "[ PROCESSING... ]" : "[ INITIALIZE ACCOUNT ]"}
           </button>
         </form>
 
         {/* ---- Footer Link ---- */}
         <div className="auth-footer">
-          Already have an account? <Link to="/login">Login here</Link>
+          EXISTING IDENTITY? <Link to="/login">EXECUTE LOGIN</Link>
         </div>
       </div>
     </div>
