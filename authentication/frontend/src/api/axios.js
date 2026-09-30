@@ -13,7 +13,7 @@
 import axios from "axios";
 
 // The backend server URL
-const API_URL = import.meta.env.VITE_API_URL/api || "http://localhost:4000/api";
+const API_URL = import.meta.env.API_URL || "http://localhost:4000/api";
 
 // Create an Axios instance with default config.
 // Using an instance (instead of the global axios) lets us
